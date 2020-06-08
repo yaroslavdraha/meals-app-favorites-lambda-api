@@ -2,7 +2,7 @@ name: deploy to lambda
 on: [push]
 jobs:
   deploy_source:
-    name: build and deploy lambda
+    name: Build and Deploy Lambda
     strategy:
       matrix:
         node-version: [12.x]
@@ -13,17 +13,22 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: npm install and build
+      - name: Build
         run: |
           npm ci
-          npm run build --if-present & npm run test
+          npm run build --if-present
         env:
           CI: true
-      - name: zip
+      - name: Tests
+        run: |
+          npm run test
+        env:
+          CI: true
+      - name: Zip
         uses: montudor/action-zip@v0.1.0
         with:
           args: zip -qq -r ./bundle.zip ./
-      - name: default deploy
+      - name: Deploy to Lambda
         uses: appleboy/lambda-action@master
         with:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
