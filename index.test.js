@@ -7,7 +7,7 @@ describe('Test Main handler requests', () => {
       lambdaFunc
     });
 
-    expect(res).toBe(2);
+    expect(res.statusCode).toBe(200);
   })
 });
 
