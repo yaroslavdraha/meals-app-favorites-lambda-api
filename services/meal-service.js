@@ -1,12 +1,9 @@
 
-
-
 const getMeals = () => {
   return [1,2,3];
 };
 
-const addFavorite = (mealId, userId = 'default') => {
-
+const addFavorite = async (mealId, userId = 'default', db) => {
   const params = {
     Item: {
       "mealId": {
@@ -19,13 +16,22 @@ const addFavorite = (mealId, userId = 'default') => {
     TableName: 'ma-favorites'
   }
 
-  dynamoDB.putItem(params, (err, data) => {
+  return new Promise((res, rej) => {
+    res(2);
+  })
 
-  });
-
-  return [1,2,3];
+  // return new Promise((res, rej) => {
+  //   db.putItem(params, (err, data) => {
+  //     if (err) {
+  //       rej(err);
+  //     } else {
+  //       res(data)
+  //     }
+  //   });
+  // })
 };
 
 module.exports = {
-  getMeals
+  getMeals,
+  addFavorite
 }
