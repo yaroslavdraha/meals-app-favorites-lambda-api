@@ -1,5 +1,5 @@
-import {getMeals} from "./services/meal-service";
-//
+const {getMeals} = require("./services/meal-service");
+
 // const AWS = require('aws-sdk');
 // const dynamoDB = new AWS.DynamoDB({
 //   region: 'us-east-2',
