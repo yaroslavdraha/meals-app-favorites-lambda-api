@@ -6,12 +6,17 @@ const {getMeals} = require("./services/meal-service");
 //   apiVersion: '2020-08-10'
 // });
 
+exports.handler = (event, context, callback) => {
+  // get favorites by user id
 
-exports.handler = async (event) => {
+  // add favorites
+
   const response = {
-    statusCode: 200,
-    body: JSON.stringify(getMeals()),
+    context,
+    event
   };
 
-  return response;
+  setTimeout(() => {
+    callback(null, response)
+  }, 100)
 };

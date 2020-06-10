@@ -10,7 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.693.0",
-    "jest": "^26.0.1"
+    "aws-sdk": "^2.693.0"
+  },
+  "devDependencies": {
+    "jest": "^26.0.1",
+    "lambda-local": "^1.7.3"
   }
 }
