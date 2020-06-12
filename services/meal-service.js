@@ -3,6 +3,10 @@ const getMeals = () => {
   return [1,2,3];
 };
 
+const getFavorites = (userId) => {
+  return ['m1'];
+}
+
 const addFavorite = async (mealId, userId = 'default', db) => {
   const params = {
     Item: {
@@ -33,5 +37,6 @@ const addFavorite = async (mealId, userId = 'default', db) => {
 
 module.exports = {
   getMeals,
-  addFavorite
+  addFavorite,
+  getFavorites
 }

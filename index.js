@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
 
-const {getMeals, addFavorite} = require("./services/meal-service");
+const {getMeals, addFavorite, getFavorites} = require("./services/meal-service");
 
 app.use(bodyParser.json({ strict: false }));
 
@@ -13,9 +13,12 @@ app.use(bodyParser.json({ strict: false }));
 //   apiVersion: '2012-08-10'
 // });
 
-app.get('/', (req, res) => {
+app.get('/byuserid/:userId', (req, res) => {
+
+  let userId = req.param.userId;
+
   res.json({
-    favorites: getMeals()
+    favorites: getFavorites(userId)
   });
 });
 
