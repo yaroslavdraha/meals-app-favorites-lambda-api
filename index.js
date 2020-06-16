@@ -1,25 +1,13 @@
 const serverless = require('serverless-http');
-const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
 
-const {getMeals, addFavorite, getFavorites} = require("./services/meal-service");
+app.use(express.json());
 
-app.use(bodyParser.json({ strict: false }));
+app.use('/favorites', require('./routes/favorites.route'));
 
-// const AWS = require('aws-sdk');
-// const dynamoDB = new AWS.DynamoDB({
-//   region: 'us-east-2',
-//   apiVersion: '2012-08-10'
-// });
-
-app.get('/byuserid/:userId', (req, res) => {
-
-  let userId = req.param.userId;
-
-  res.json({
-    favorites: getFavorites(userId)
-  });
-});
+app.use((req, res) => {
+  res.status(404).send({error: 'Method not found'})
+})
 
 module.exports.handler = serverless(app);
