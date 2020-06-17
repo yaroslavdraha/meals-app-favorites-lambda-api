@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const {getFavorites, addFavorite} = require('../services/favorites.service');
+const {getFavorites, addFavorite, removeFavorite} = require('../services/favorites');
 
 router.get('/byuserid/:userId', async (req, res) => {
   let userId = req.params.userId;
@@ -27,6 +27,23 @@ router.post('/', async (req, res) => {
     res.send({
       message: "Added to favorites successfully"
     })
+  } catch (e) {
+    res.status(500).send({
+      message: "Error occurred while adding",
+      error: e.message
+    })
+  }
+});
+
+router.delete('/', async (req, res) => {
+  const {userId, mealId} = req.body;
+
+  try {
+    await removeFavorite(mealId, userId);
+
+    res.status(200).send({
+      message: "Added to favorites successfully"
+    });
   } catch (e) {
     res.status(500).send({
       message: "Error occurred while adding",

@@ -27,7 +27,15 @@ const addFavorite = async (mealId, userId = 'default') => {
 };
 
 const removeFavorite = async (mealId, userId = 'default') => {
-  return {};
+  const params = {
+      TableName: favoritesTableName,
+      Key: {
+        "mealId": mealId,
+        "userId": userId
+      }
+    }
+
+    return db.delete(params).promise();
 }
 
 module.exports = {
