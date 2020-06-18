@@ -1,4 +1,4 @@
-const db = require('../providers/database');
+const db = require('../database');
 
 const favoritesTableName = 'meals-favorites';
 

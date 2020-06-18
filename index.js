@@ -4,7 +4,7 @@ const app = express();
 
 app.use(express.json());
 
-app.use('/favorites', require('./routes/favorites'));
+app.use('/favorites', require('./src/controllers/favorites'));
 
 app.use((req, res) => {
   res.status(404).send({error: 'Method not found'})
